@@ -1,0 +1,190 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Instituição de Ensino",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Rota para a página"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Alunos",
+            "description": "Informações dos alunos da intituição"
+        }
+    ],
+    "paths": {
+        "/Alunos": {
+            "get": {
+                "tags": [
+                    "Alunos"
+                ],
+                "summary": "Informações detalhadas dos alunos",
+                "description": "Pegar lista dos alunos",
+                "operationid": "getTodosAlunos",
+                "responses": {
+                    "200": {
+                        "$ref": "responses.json#/components/responses/aluno_200"
+                    },
+                    "400": {
+                        "description": "Código inválido"
+                    },
+                    "404": {
+                        "description": "Aluno não existe"
+                    }
+                }
+            }
+        },
+        "/Alunos/{alunoid}": {
+            "get": {
+                "tags": [
+                    "Alunos"
+                ],
+                "summary": "Informações detalhadas dos alunos",
+                "description": "Pegar lista dos alunos",
+                "operationid": "getTodosAlunos",
+                "parameters": [
+                    {
+                        "$ref": "parameters.json#/components/parameters/alunoid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "responses.json#/components/responses/aluno_200"
+                    },
+                    "400": {
+                        "description": "Código inválido"
+                    },
+                    "404": {
+                        "description": "Aluno não existe"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Alunos"
+                ],
+                "summary": "Cria um novo aluno",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": [
+                                {
+                                    "$ref": "schemas.json#/components/schemas/Aluno"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Aluno criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": [
+                                    {
+                                        "$ref": "schemas.json#/components/schemas/Aluno"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Código inválido"
+                    },
+                    "404": {
+                        "description": "Aluno não existe"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualiza um usuário pelo id",
+                "parameters": [
+                    {
+                        "$ref": "parameters.json#/components/parameters/alunoid"
+                    }
+                ],
+                "required": true,
+                "description": "ID do usuário",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": [
+                                {
+                                    "$ref": "schemas.json#/components/schemas/Aluno"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Aluno criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": [
+                                    {
+                                        "$ref": "schemas.json#/components/schemas/Aluno"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Código inválido"
+                    },
+                    "404": {
+                        "description": "Aluno não existe"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Atualiza parcialmente um usuário pelo id",
+                "parameters": [
+                    {
+                        "$ref": "parameters.json#/components/parameters/alunoid"
+                    }
+                ],
+                "required": true,
+                "description": "ID do usuário",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": [
+                                {
+                                    "$ref": "schemas.json#/components/schemas/Aluno"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Aluno criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": [
+                                    {
+                                        "$ref": "schemas.json#/components/schemas/Aluno"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Código inválido"
+                    },
+                    "404": {
+                        "description": "Aluno não existe"
+                    }
+                }
+            }
+        }
+    }
+}

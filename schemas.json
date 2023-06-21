@@ -1,0 +1,33 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Esquemas dos componentes",
+        "version": "1.0.0"
+    },
+    "paths": {},
+    "components": {
+        "schemas": {
+            "Alunos": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Aluno"
+                }
+            },
+            "Aluno": {
+                "required": [
+                    "serialNumber"
+                ],
+                "type": "object",
+                "properties": {
+                    "alunoid": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "xml": {
+                    "name": "Aluno"
+                }
+            }
+        }
+    }
+}
