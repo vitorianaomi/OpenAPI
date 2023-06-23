@@ -9,21 +9,30 @@
             "aluno_200": {
                 "summary": "Example Succes 1",
                 "description": "An example for Aluno get endpoint.",
-                "value": {
-                    "id": "1",
-                    "name": "Vitória",
-                    "city": "Almino Afonso/RN",
-                    "curso": "Técnico em informática"
-                }
+                "value": [
+                    {
+                        "alunoid": "1",
+                        "name": "Vitória",
+                        "city": "Almino Afonso/RN",
+                        "curso": "Técnico em informática"
+                    },
+                    {
+                        "alunoid": "2",
+                        "name": "Bonfim Aquino",
+                        "city": "Pau dos ferros/RN",
+                        "curso": "Técnico em informática"
+                    }
+                ]
             },
             "alunos_200": {
                 "summary": "Example Succes 1",
                 "description": "An example for Alunos list get endpoint.",
-                "value": [
-                    {
+                "value": {
+                    "type": "object",
+                    "properties": {
                         "$ref": "#/components/examples/aluno_200/value"
                     }
-                ]
+                }
             }
         }
     }

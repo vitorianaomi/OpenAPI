@@ -7,7 +7,7 @@
   "servers": [
     {
       "url": "http://localhost:8080",
-      "description": "Rota para a página"
+      "description": "Rota para a página da api"
     }
   ],
   "tags": [
@@ -31,18 +31,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
+                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
                 },
                 "examples": {
                   "example_1": {
                     "summary": "Example Succes 1",
                     "description": "An example for Aluno get endpoint.",
-                    "value": {
-                      "id": "1",
-                      "name": "Vitória",
-                      "city": "Almino Afonso/RN",
-                      "curso": "Técnico em informática"
-                    }
+                    "value": [
+                      {
+                        "alunoid": "1",
+                        "name": "Vitória",
+                        "city": "Almino Afonso/RN",
+                        "curso": "Técnico em informática"
+                      },
+                      {
+                        "alunoid": "2",
+                        "name": "Bonfim Aquino",
+                        "city": "Pau dos ferros/RN",
+                        "curso": "Técnico em informática"
+                      }
+                    ]
                   }
                 }
               }
@@ -90,72 +98,41 @@
           }
         }
       },
-      "post": {
+      "put": {
         "tags": [
           "Alunos"
         ],
-        "summary": "Cria um novo aluno",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": [
-                {
-                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
-                }
-              ]
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Aluno criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": [
-                  {
-                    "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
-                  }
-                ]
-              }
-            }
-          },
-          "400": {
-            "description": "Código inválido"
-          },
-          "404": {
-            "description": "Aluno não existe"
-          }
-        }
-      },
-      "put": {
         "summary": "Atualiza um usuário pelo id",
-        "parameters": {
-          "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/get/parameters/0"
-        },
+        "parameters": [
+          {
+            "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/get/parameters/0"
+          }
+        ],
         "required": true,
         "description": "ID do usuário",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": [
-                {
-                  "required": [
-                    "serialNumber"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "alunoid": {
-                      "type": "integer",
-                      "example": "1"
-                    }
+              "schema": {
+                "required": [
+                  "serialNumber"
+                ],
+                "type": "object",
+                "properties": {
+                  "alunoid": {
+                    "type": "integer",
+                    "example": "1"
                   },
-                  "xml": {
-                    "name": "Aluno"
+                  "alunoname": {
+                    "type": "string",
+                    "example": "Vitória"
                   }
+                },
+                "xml": {
+                  "name": "Aluno"
                 }
-              ]
+              }
             }
           }
         },
@@ -164,11 +141,9 @@
             "description": "Aluno criado com sucesso",
             "content": {
               "application/json": {
-                "schema": [
-                  {
-                    "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
-                  }
-                ]
+                "schema": {
+                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                }
               }
             }
           },
@@ -193,11 +168,9 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": [
-                {
-                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
-                }
-              ]
+              "schema": {
+                "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+              }
             }
           }
         },
@@ -206,16 +179,50 @@
             "description": "Aluno criado com sucesso",
             "content": {
               "application/json": {
-                "schema": [
-                  {
-                    "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
-                  }
-                ]
+                "schema": {
+                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                }
               }
             }
           },
           "400": {
             "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Criar um novo item",
+        "description": "Cria um novo item com os dados fornecidos",
+        "requestBody": {
+          "description": "Dados do item a ser criado",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida"
           },
           "404": {
             "description": "Aluno não existe"

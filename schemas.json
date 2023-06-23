@@ -22,6 +22,10 @@
                     "alunoid": {
                         "type": "integer",
                         "example": "1"
+                    },
+                    "alunoname": {
+                        "type": "string",
+                        "example": "Vitória"
                     }
                 },
                 "xml": {

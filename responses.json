@@ -27,12 +27,13 @@
                 "content": {
                     "application/json": {
                         "schema": {
-                            "$ref": "schemas.json#/components/schemas/Alunos"
+                            "type": "array",
+                            "items": {
+                                "$ref": "schemas.json#/components/schemas/Alunos"
+                            }
                         },
                         "examples": {
-                            "example_1": {
-                                "$ref": "responses_examples.json#/components/examples/alunos_200"
-                            }
+                            "$ref": "responses_examples.json#/components/examples/alunos_200"
                         }
                     }
                 }
