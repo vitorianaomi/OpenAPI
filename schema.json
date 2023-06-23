@@ -1,0 +1,227 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Instituição de Ensino",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Rota para a página"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Alunos",
+      "description": "Informações dos alunos da intituição"
+    }
+  ],
+  "paths": {
+    "/Alunos": {
+      "get": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Informações detalhadas dos alunos",
+        "description": "Pegar lista dos alunos",
+        "operationid": "getTodosAlunos",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
+                },
+                "examples": {
+                  "example_1": {
+                    "summary": "Example Succes 1",
+                    "description": "An example for Aluno get endpoint.",
+                    "value": {
+                      "id": "1",
+                      "name": "Vitória",
+                      "city": "Almino Afonso/RN",
+                      "curso": "Técnico em informática"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      }
+    },
+    "/Alunos/{alunoid}": {
+      "get": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Informações detalhadas dos alunos",
+        "description": "Pegar lista dos alunos",
+        "operationid": "getTodosAlunos",
+        "parameters": [
+          {
+            "name": "alunoid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/paths/~1Alunos/get/responses/200"
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Cria um novo aluno",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": [
+                {
+                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": [
+                  {
+                    "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um usuário pelo id",
+        "parameters": {
+          "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/get/parameters/0"
+        },
+        "required": true,
+        "description": "ID do usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": [
+                {
+                  "required": [
+                    "serialNumber"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "alunoid": {
+                      "type": "integer",
+                      "example": "1"
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": [
+                  {
+                    "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualiza parcialmente um usuário pelo id",
+        "parameters": [
+          {
+            "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/get/parameters/0"
+          }
+        ],
+        "required": true,
+        "description": "ID do usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": [
+                {
+                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": [
+                  {
+                    "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema/0"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      }
+    }
+  }
+}
