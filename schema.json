@@ -17,21 +17,49 @@
     }
   ],
   "paths": {
-    "/Alunos": {
+    "/Aluno/{alunoid}": {
       "get": {
         "tags": [
-          "Alunos"
+          "Aluno"
         ],
         "summary": "Informações detalhadas dos alunos",
-        "description": "Pegar lista dos alunos",
-        "operationid": "getTodosAlunos",
+        "description": "Pegar aluno por id",
+        "parameters": [
+          {
+            "name": "alunoid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                  "required": [
+                    "serialNumber"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "alunoid": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "alunoname": {
+                      "type": "string",
+                      "example": "Vitória Naomí"
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
                 },
                 "examples": {
                   "example_1": {
@@ -63,16 +91,12 @@
             "description": "Aluno não existe"
           }
         }
-      }
-    },
-    "/Alunos/{alunoid}": {
-      "get": {
+      },
+      "put": {
         "tags": [
           "Alunos"
         ],
-        "summary": "Informações detalhadas dos alunos",
-        "description": "Pegar lista dos alunos",
-        "operationid": "getTodosAlunos",
+        "summary": "Atualiza um usuário pelo id",
         "parameters": [
           {
             "name": "alunoid",
@@ -86,29 +110,6 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "$ref": "#/paths/~1Alunos/get/responses/200"
-          },
-          "400": {
-            "description": "Código inválido"
-          },
-          "404": {
-            "description": "Aluno não existe"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Alunos"
-        ],
-        "summary": "Atualiza um usuário pelo id",
-        "parameters": [
-          {
-            "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/get/parameters/0"
-          }
-        ],
-        "required": true,
         "description": "ID do usuário",
         "requestBody": {
           "required": true,
@@ -126,7 +127,7 @@
                   },
                   "alunoname": {
                     "type": "string",
-                    "example": "Vitória"
+                    "example": "Vitória Naomí"
                   }
                 },
                 "xml": {
@@ -142,7 +143,23 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                  "required": [
+                    "serialNumber"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "alunoid": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "alunoname": {
+                      "type": "string",
+                      "example": "Vitória Naomí"
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
                 }
               }
             }
@@ -159,17 +176,40 @@
         "summary": "Atualiza parcialmente um usuário pelo id",
         "parameters": [
           {
-            "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/get/parameters/0"
+            "name": "alunoid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
-        "required": true,
         "description": "ID do usuário",
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                "required": [
+                  "serialNumber"
+                ],
+                "type": "object",
+                "properties": {
+                  "alunoid": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "alunoname": {
+                    "type": "string",
+                    "example": "Vitória Naomí"
+                  }
+                },
+                "xml": {
+                  "name": "Aluno"
+                }
               }
             }
           }
@@ -180,7 +220,23 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                  "required": [
+                    "serialNumber"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "alunoid": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "alunoname": {
+                      "type": "string",
+                      "example": "Vitória Naomí"
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
                 }
               }
             }
@@ -198,6 +254,19 @@
           "Alunos"
         ],
         "summary": "Criar um novo item",
+        "parameters": [
+          {
+            "name": "alunoid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "description": "Cria um novo item com os dados fornecidos",
         "requestBody": {
           "description": "Dados do item a ser criado",
@@ -205,7 +274,23 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                "required": [
+                  "serialNumber"
+                ],
+                "type": "object",
+                "properties": {
+                  "alunoid": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "alunoname": {
+                    "type": "string",
+                    "example": "Vitória Naomí"
+                  }
+                },
+                "xml": {
+                  "name": "Aluno"
+                }
               }
             }
           }
@@ -216,13 +301,78 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/paths/~1Alunos~1%7Balunoid%7D/put/requestBody/content/application~1json/schema"
+                  "required": [
+                    "serialNumber"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "alunoid": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "alunoname": {
+                      "type": "string",
+                      "example": "Vitória Naomí"
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
                 }
               }
             }
           },
           "400": {
             "description": "Requisição inválida"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      }
+    },
+    "/Alunos": {
+      "get": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Informações detalhadas dos alunos",
+        "description": "Pegar lista dos alunos",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "required": [
+                        "serialNumber"
+                      ],
+                      "type": "object",
+                      "properties": {
+                        "alunoid": {
+                          "type": "integer",
+                          "example": "1"
+                        },
+                        "alunoname": {
+                          "type": "string",
+                          "example": "Vitória Naomí"
+                        }
+                      },
+                      "xml": {
+                        "name": "Aluno"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
           },
           "404": {
             "description": "Aluno não existe"
