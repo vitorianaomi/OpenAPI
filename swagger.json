@@ -1,124 +1,47 @@
 {
-    "openapi": "3.0.1",
-    "info": {
-      "title": "Instituição de Ensino",
-      "version": "1.0.0"
-    },
-    "servers": [
-      {
-        "url": "http://localhost:8080",
-        "description": "Rota para a página da api"
-      }
-    ],
-    "tags": [
-      {
-        "name": "Alunos",
-        "description": "Informações dos alunos da intituição"
-      }
-    ],
-    "paths": {
-      "/Aluno/{alunoid}": {
-        "get": {
-          "tags": [
-            "Aluno"
-          ],
-          "summary": "Informações detalhadas dos alunos",
-          "description": "Pegar aluno por id",
-          "parameters": [
-            {
-              "name": "alunoid",
-              "in": "path",
-              "description": "Id do aluno",
-              "required": true,
-              "style": "simple",
-              "explode": false,
-              "schema": {
-                "type": "integer"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "required": [
-                      "serialNumber"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "alunoid": {
-                        "type": "integer",
-                        "example": "1"
-                      },
-                      "alunoname": {
-                        "type": "string",
-                        "example": "Vitória Naomí"
-                      }
-                    },
-                    "xml": {
-                      "name": "Aluno"
-                    }
-                  },
-                  "examples": {
-                    "example_1": {
-                      "summary": "Example Succes 1",
-                      "description": "An example for Aluno get endpoint.",
-                      "value": [
-                        {
-                          "alunoid": "1",
-                          "name": "Vitória",
-                          "city": "Almino Afonso/RN",
-                          "curso": "Técnico em informática"
-                        },
-                        {
-                          "alunoid": "2",
-                          "name": "Bonfim Aquino",
-                          "city": "Pau dos ferros/RN",
-                          "curso": "Técnico em informática"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Código inválido"
-            },
-            "404": {
-              "description": "Aluno não existe"
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Instituição de Ensino",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Rota para a página da api"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Alunos",
+      "description": "Informações dos alunos da intituição"
+    }
+  ],
+  "paths": {
+    "/Aluno/{alunoid}": {
+      "get": {
+        "tags": ["Aluno"],
+        "summary": "Informações detalhadas dos alunos",
+        "description": "Pegar aluno por id",
+        "parameters": [
+          {
+            "name": "alunoid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
             }
           }
-        },
-        "put": {
-          "tags": [
-            "Alunos"
-          ],
-          "summary": "Atualiza um usuário pelo id",
-          "parameters": [
-            {
-              "name": "alunoid",
-              "in": "path",
-              "description": "Id do aluno",
-              "required": true,
-              "style": "simple",
-              "explode": false,
-              "schema": {
-                "type": "integer"
-              }
-            }
-          ],
-          "description": "ID do usuário",
-          "requestBody": {
-            "required": true,
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "required": [
-                    "serialNumber"
-                  ],
+                  "required": ["serialNumber"],
                   "type": "object",
                   "properties": {
                     "alunoid": {
@@ -133,252 +56,384 @@
                   "xml": {
                     "name": "Aluno"
                   }
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "Aluno criado com sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "required": [
-                      "serialNumber"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "alunoid": {
-                        "type": "integer",
-                        "example": "1"
+                },
+                "examples": {
+                  "example_1": {
+                    "summary": "Example Succes 1",
+                    "description": "An example for Aluno get endpoint.",
+                    "value": [
+                      {
+                        "alunoid": "1",
+                        "name": "Vitória",
+                        "city": "Almino Afonso/RN",
+                        "curso": "Técnico em informática"
                       },
-                      "alunoname": {
-                        "type": "string",
-                        "example": "Vitória Naomí"
+                      {
+                        "alunoid": "2",
+                        "name": "Bonfim Aquino",
+                        "city": "Pau dos ferros/RN",
+                        "curso": "Técnico em informática"
                       }
-                    },
-                    "xml": {
-                      "name": "Aluno"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Código inválido"
-            },
-            "404": {
-              "description": "Aluno não existe"
-            }
-          }
-        },
-        "patch": {
-          "summary": "Atualiza parcialmente um usuário pelo id",
-          "parameters": [
-            {
-              "name": "alunoid",
-              "in": "path",
-              "description": "Id do aluno",
-              "required": true,
-              "style": "simple",
-              "explode": false,
-              "schema": {
-                "type": "integer"
-              }
-            }
-          ],
-          "description": "ID do usuário",
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "serialNumber"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "alunoid": {
-                      "type": "integer",
-                      "example": "1"
-                    },
-                    "alunoname": {
-                      "type": "string",
-                      "example": "Vitória Naomí"
-                    }
-                  },
-                  "xml": {
-                    "name": "Aluno"
+                    ]
                   }
                 }
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "Aluno criado com sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "required": [
-                      "serialNumber"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "alunoid": {
-                        "type": "integer",
-                        "example": "1"
-                      },
-                      "alunoname": {
-                        "type": "string",
-                        "example": "Vitória Naomí"
-                      }
-                    },
-                    "xml": {
-                      "name": "Aluno"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Código inválido"
-            },
-            "404": {
-              "description": "Aluno não existe"
-            }
-          }
-        },
-        "post": {
-          "tags": [
-            "Alunos"
-          ],
-          "summary": "Criar um novo item",
-          "parameters": [
-            {
-              "name": "alunoid",
-              "in": "path",
-              "description": "Id do aluno",
-              "required": true,
-              "style": "simple",
-              "explode": false,
-              "schema": {
-                "type": "integer"
-              }
-            }
-          ],
-          "description": "Cria um novo item com os dados fornecidos",
-          "requestBody": {
-            "description": "Dados do item a ser criado",
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "required": [
-                    "serialNumber"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "alunoid": {
-                      "type": "integer",
-                      "example": "1"
-                    },
-                    "alunoname": {
-                      "type": "string",
-                      "example": "Vitória Naomí"
-                    }
-                  },
-                  "xml": {
-                    "name": "Aluno"
-                  }
-                }
-              }
-            }
+          "400": {
+            "description": "Código inválido"
           },
-          "responses": {
-            "200": {
-              "description": "Aluno criado com sucesso",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "required": [
-                      "serialNumber"
-                    ],
-                    "type": "object",
-                    "properties": {
-                      "alunoid": {
-                        "type": "integer",
-                        "example": "1"
-                      },
-                      "alunoname": {
-                        "type": "string",
-                        "example": "Vitória Naomí"
-                      }
-                    },
-                    "xml": {
-                      "name": "Aluno"
-                    }
-                  }
-                }
-              }
-            },
-            "400": {
-              "description": "Requisição inválida"
-            },
-            "404": {
-              "description": "Aluno não existe"
-            }
+          "404": {
+            "description": "Aluno não existe"
           }
         }
       },
-      "/Alunos": {
-        "get": {
-          "tags": [
-            "Alunos"
-          ],
-          "summary": "Informações detalhadas dos alunos",
-          "description": "Pegar lista dos alunos",
-          "responses": {
-            "200": {
-              "description": "successful operation",
-              "content": {
-                "application/json": {
-                  "schema": {
+      "put": {
+        "tags": ["Alunos"],
+        "summary": "Atualiza um usuário pelo id",
+        "parameters": [
+          {
+            "name": "alunoid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "ID do usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["serialNumber"],
+                "type": "object",
+                "properties": {
+                  "alunoid": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "alunoname": {
+                    "type": "string",
+                    "example": "Vitória Naomí"
+                  }
+                },
+                "xml": {
+                  "name": "Aluno"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["serialNumber"],
+                  "type": "object",
+                  "properties": {
+                    "alunoid": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "alunoname": {
+                      "type": "string",
+                      "example": "Vitória Naomí"
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualiza parcialmente um usuário pelo id",
+        "parameters": [
+          {
+            "name": "alunoid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "ID do usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["serialNumber"],
+                "type": "object",
+                "properties": {
+                  "alunoid": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "alunoname": {
+                    "type": "string",
+                    "example": "Vitória Naomí"
+                  }
+                },
+                "xml": {
+                  "name": "Aluno"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["serialNumber"],
+                  "type": "object",
+                  "properties": {
+                    "alunoid": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "alunoname": {
+                      "type": "string",
+                      "example": "Vitória Naomí"
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Alunos"],
+        "summary": "Criar um novo item",
+        "parameters": [
+          {
+            "name": "alunoid",
+            "in": "path",
+            "description": "Id do aluno",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "Cria um novo item com os dados fornecidos",
+        "requestBody": {
+          "description": "Dados do item a ser criado",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["serialNumber"],
+                "type": "object",
+                "properties": {
+                  "alunoid": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "alunoname": {
+                    "type": "string",
+                    "example": "Vitória Naomí"
+                  }
+                },
+                "xml": {
+                  "name": "Aluno"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Aluno criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "required": ["serialNumber"],
+                  "type": "object",
+                  "properties": {
+                    "alunoid": {
+                      "type": "integer",
+                      "example": "1"
+                    },
+                    "alunoname": {
+                      "type": "string",
+                      "example": "Vitória Naomí"
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      }
+    },
+    "/Alunos": {
+      "get": {
+        "tags": ["Alunos"],
+        "summary": "Informações detalhadas dos alunos",
+        "description": "Pegar lista dos alunos",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
                     "type": "array",
                     "items": {
-                      "type": "array",
-                      "items": {
-                        "required": [
-                          "serialNumber"
-                        ],
-                        "type": "object",
-                        "properties": {
-                          "alunoid": {
-                            "type": "integer",
-                            "example": "1"
-                          },
-                          "alunoname": {
-                            "type": "string",
-                            "example": "Vitória Naomí"
-                          }
+                      "required": ["serialNumber"],
+                      "type": "object",
+                      "properties": {
+                        "alunoid": {
+                          "type": "integer",
+                          "example": "1"
                         },
-                        "xml": {
-                          "name": "Aluno"
+                        "alunoname": {
+                          "type": "string",
+                          "example": "Vitória Naomí"
                         }
+                      },
+                      "xml": {
+                        "name": "Aluno"
                       }
                     }
                   }
                 }
               }
-            },
-            "400": {
-              "description": "Código inválido"
-            },
-            "404": {
-              "description": "Aluno não existe"
             }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      }
+    },
+    "/api/execution": {
+      "get": {
+        "tags": ["Execution"],
+        "summary": "Execution information",
+        "description": "From the \"id\" of the logged in team member, bring up all the individualized consensuses that are under your supervision. In each consensus (executions) the end point must inform the percentage of iterations that are in part 1, the percentage that are in part 2 and those completed.",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "execution_id": {
+                            "type": "integer",
+                            "example": 10
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "IGA-HGF"
+                          },
+                          "part_1": {
+                            "type": "integer",
+                            "example": 70
+                          },
+                          "part_2": {
+                            "type": "integer",
+                            "example": 20
+                          },
+                          "completed": {
+                            "type": "integer",
+                            "example": 10
+                          }
+                        }
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "currentPage": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "totalItems": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "totalPage": {
+                          "type": "integer",
+                          "example": 1
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
           }
         }
       }
     }
   }
+}

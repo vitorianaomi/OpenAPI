@@ -379,6 +379,87 @@
           }
         }
       }
+    },
+    "/api/execution": {
+      "get": {
+        "tags": [
+          "Execution"
+        ],
+        "summary": "Informações da execução",
+        "description": "A partir do \"id\" do Team member logado, trazer todos os consensos individualizados que estão sob sua supervisão. Em cada consenso (executions) o end-point deve informar o percentual de iterations que estão na parte 1, o percentual dos que estão na parte 2 e os concluídos.",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "execution_id": {
+                            "type": "integer",
+                            "example": 10
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "IGA-HGF"
+                          },
+                          "part_1": {
+                            "type": "integer",
+                            "example": 70
+                          },
+                          "part_2": {
+                            "type": "integer",
+                            "example": 20
+                          },
+                          "completed": {
+                            "type": "integer",
+                            "example": 10
+                          }
+                        }
+                      }
+                    },
+                    "pagination": {
+                      "type": "object",
+                      "properties": {
+                        "currentPage": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "pageSize": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "totalItems": {
+                          "type": "integer",
+                          "example": 1
+                        },
+                        "totalPage": {
+                          "type": "integer",
+                          "example": 1
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "Aluno"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Código inválido"
+          },
+          "404": {
+            "description": "Aluno não existe"
+          }
+        }
+      }
     }
   }
 }
